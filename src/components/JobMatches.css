@@ -1,0 +1,388 @@
+.job-matches-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Header */
+.jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.jobs-header h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.jobs-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.jobs-filters {
+  display: flex;
+  gap: 12px;
+}
+
+.location-select {
+  padding: 10px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Loading State */
+.jobs-loading {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.jobs-loading p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Error State */
+.jobs-error {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.jobs-error h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.jobs-error p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* Empty State */
+.jobs-empty {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.jobs-empty h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.jobs-empty p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Jobs Grid */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+/* Job Card */
+.job-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Job Card Header */
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.job-title-section {
+  flex: 1;
+}
+
+.job-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.job-company {
+  font-size: 16px;
+  color: #667eea;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.job-location {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Match Badge */
+.job-match-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 12px;
+  min-width: 90px;
+}
+
+.match-excellent {
+  background: #d1fae5;
+  border: 2px solid #10b981;
+}
+
+.match-good {
+  background: #fed7aa;
+  border: 2px solid #f59e0b;
+}
+
+.match-fair {
+  background: #dbeafe;
+  border: 2px solid #3b82f6;
+}
+
+.match-score {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.match-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Job Salary */
+.job-salary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.salary-icon {
+  font-size: 18px;
+}
+
+/* Job Description */
+.job-description {
+  padding: 12px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.job-description p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Matched Skills */
+.matched-skills {
+  padding: 12px 0;
+}
+
+.matched-skills h4 {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  padding: 4px 10px;
+  background: #e0e7ff;
+  color: #4338ca;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.skill-tag-more {
+  padding: 4px 10px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Job Footer */
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.job-footer-left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.job-category {
+  padding: 6px 12px;
+  background: #f9fafb;
+  color: #6b7280;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.job-source {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.source-adzuna {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.source-google-jobs {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.source-mock {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.btn-apply {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .jobs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .jobs-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .jobs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .job-card-header {
+    flex-direction: column;
+  }
+
+  .job-match-badge {
+    align-self: flex-start;
+  }
+
+  .job-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-apply {
+    justify-content: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
