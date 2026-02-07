@@ -8,10 +8,6 @@ const JobMatches = () => {
   const [error, setError] = useState(null);
   const [location, setLocation] = useState('in'); // Default to India
 
-  useEffect(() => {
-    fetchMatchedJobs();
-  }, [location]);
-
   const fetchMatchedJobs = async () => {
     try {
       setLoading(true);
@@ -27,6 +23,11 @@ const JobMatches = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchMatchedJobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   const getMatchScoreClass = (score) => {
     if (score >= 70) return 'match-excellent';
