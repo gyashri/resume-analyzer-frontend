@@ -26,12 +26,17 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
       const response = await authAPI.getMe();
       setUser(response.data.data);
       setError(null);
     } catch (err) {
       setUser(null);
-      // Don't show error for initial auth check
+      localStorage.removeItem('token');
       console.log('Not authenticated');
     } finally {
       setLoading(false);
@@ -43,6 +48,9 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       const response = await authAPI.register(userData);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
       setUser(response.data.data);
       return { success: true };
     } catch (err) {
@@ -60,6 +68,9 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       const response = await authAPI.login(credentials);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
       setUser(response.data.data);
       return { success: true };
     } catch (err) {
@@ -75,12 +86,12 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await authAPI.logout();
-      setUser(null);
-      setError(null);
     } catch (err) {
       console.error('Logout error:', err);
-      // Still clear user even if API call fails
+    } finally {
+      localStorage.removeItem('token');
       setUser(null);
+      setError(null);
     }
   };
 

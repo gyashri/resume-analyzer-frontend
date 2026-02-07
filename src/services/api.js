@@ -6,13 +6,16 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Important: Send cookies with requests
+  withCredentials: true,
 });
 
-// Request interceptor for adding auth token
+// Request interceptor - attach token from localStorage
 api.interceptors.request.use(
   (config) => {
-    // Cookies are automatically sent with withCredentials: true
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
@@ -25,13 +28,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      // Server responded with error status
       const message = error.response.data.message || 'Something went wrong';
       console.error('API Error:', message);
 
-      // Redirect to login if unauthorized, BUT NOT if:
-      // 1. The error came from login/register endpoints, OR
-      // 2. We're already on the login/register page
       const isAuthEndpoint = error.config.url.includes('/auth/login') ||
                              error.config.url.includes('/auth/register') ||
                              error.config.url.includes('/auth/me');
@@ -39,13 +38,12 @@ api.interceptors.response.use(
                            window.location.pathname === '/register';
 
       if (error.response.status === 401 && !isAuthEndpoint && !isOnAuthPage) {
+        localStorage.removeItem('token');
         window.location.href = '/login';
       }
     } else if (error.request) {
-      // Request was made but no response
       console.error('Network Error:', error.request);
     } else {
-      // Something else happened
       console.error('Error:', error.message);
     }
     return Promise.reject(error);
